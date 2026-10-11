@@ -4,6 +4,7 @@ import es419Translations from "./locales/es-419.json";
 import idIDTranslations from "./locales/id-ID.json";
 import jaJPTranslations from "./locales/ja-JP.json";
 import koKRTranslations from "./locales/ko-KR.json";
+import ruRUTranslations from "./locales/ru-RU.json";
 import ptBRTranslations from "./locales/pt-BR.json";
 import viVNTranslations from "./locales/vi-VN.json";
 import zhCNTranslations from "./locales/zh-CN.json";
@@ -16,6 +17,7 @@ export type SupportedLanguage =
   | "ja-JP"
   | "ko-KR"
   | "es-419"
+  | "ru-RU"
   | "pt-BR"
   | "id-ID"
   | "vi-VN";
@@ -33,6 +35,7 @@ const SUPPORTED_LANGUAGE_OPTIONS: Array<{
   { value: "ja-JP", labelKey: "settings.language.option.jaJP" },
   { value: "ko-KR", labelKey: "settings.language.option.koKR" },
   { value: "es-419", labelKey: "settings.language.option.es419" },
+  { value: "ru-RU", labelKey: "settings.language.option.ruRU" },
   { value: "pt-BR", labelKey: "settings.language.option.ptBR" },
   { value: "id-ID", labelKey: "settings.language.option.idID" },
   { value: "vi-VN", labelKey: "settings.language.option.viVN" },
@@ -59,6 +62,7 @@ const translations: Record<SupportedLanguage, TranslationMap> = {
   "ja-JP": flattenTranslations(jaJPTranslations as Record<string, any>),
   "ko-KR": flattenTranslations(koKRTranslations as Record<string, any>),
   "es-419": flattenTranslations(es419Translations as Record<string, any>),
+  "ru-RU": flattenTranslations(ruRUTranslations as Record<string, any>),
   "pt-BR": flattenTranslations(ptBRTranslations as Record<string, any>),
   "id-ID": flattenTranslations(idIDTranslations as Record<string, any>),
   "vi-VN": flattenTranslations(viVNTranslations as Record<string, any>),
@@ -179,6 +183,9 @@ export function normalizeLanguage(language: string): SupportedLanguage {
   }
   if (normalized === "es-419" || normalized?.startsWith("es")) {
     return "es-419";
+  }
+  if (normalized?.startsWith("ru")) {
+    return "ru-RU";
   }
   if (normalized?.startsWith("pt")) {
     return "pt-BR";
